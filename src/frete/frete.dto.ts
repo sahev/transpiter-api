@@ -2,11 +2,11 @@ export class FreteDTO {
     fre_frete?: number;
     fre_carga: string;
     fre_descarga: string;
-    fre_totalkmrodado: number;
     fre_dias: number;
     fre_valorkm: number;
     fre_porc_icms: number;
     fre_porc_manutencao: number;
+    fre_datacriacao: Date;
     custo?: {    
         cus_frete: number;
         cus_vaziobase: number;
@@ -37,7 +37,6 @@ export class CustoDTO {
 export class RetornoFreteDTO {
     fre_carga: string;
     fre_descarga: string;
-    fre_totalkmrodado: number;
     fre_dias: number;
     fre_valorkm: number;
     fre_porc_icms: number;

@@ -62,4 +62,23 @@ export class FreteService {
 
     return { status: HttpStatus.OK, message: 'Frete apagado' }
   }
+
+  async updateFrete(data): Promise<FreteDTO> {
+    
+    await this.custoRepository.update({ cus_frete: data.custo.cus_frete }, data.custo);
+    delete data.custo;
+    await this.freteRepository.update({ fre_frete: data.fre_frete }, data);
+    
+    const frete = await this.freteRepository.findOne({ fre_frete: data.fre_frete });
+    const custo = await this.custoRepository.findOne({ cus_frete: data.fre_frete });
+
+    let response = { 
+      ...frete,
+      custo: {
+        ...custo
+      }
+     }  
+
+     return response;
+  }
 }

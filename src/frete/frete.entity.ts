@@ -1,10 +1,8 @@
-import internal from "stream";
-import { Column, Entity, IsNull, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, IsNull, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity() 
 export class Frete {
     @PrimaryGeneratedColumn()
-    @OneToMany(type => Custo, cus => cus.cus_custo)
     fre_frete: number;
     
     @Column()
@@ -12,9 +10,6 @@ export class Frete {
     
     @Column()
     fre_descarga: string;
-    
-    @Column()
-    fre_totalkmrodado: number;
     
     @Column()
     fre_dias: number;
@@ -27,6 +22,9 @@ export class Frete {
     @Column()
     fre_porc_manutencao: number;
     
+    @CreateDateColumn()
+    fre_datacriacao: Date;
+    
 }
 
 @Entity() 
@@ -35,8 +33,6 @@ export class Custo {
     cus_custo: number;
 
     @Column()
-    @ManyToOne(type => Frete, fre => fre.fre_frete)
-    @JoinColumn({name: 'cus_frete', referencedColumnName: 'fre_frete'})
     cus_frete: number;
 
     @Column()

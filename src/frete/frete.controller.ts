@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { CustoDTO, FreteDTO, RetornoFreteDTO } from './frete.dto';
 import { FreteService } from './frete.service';
 
@@ -24,5 +24,10 @@ export class FreteController {
   @Delete(':id')
   async deleteFrete(@Param() data: any): Promise<object> {
     return await this.freteService.deleteFrete(data.id);
+  }
+
+  @Put('')
+  async updateFrete(@Body() data: FreteDTO): Promise<FreteDTO> {
+    return await this.freteService.updateFrete(data);
   }
 }
